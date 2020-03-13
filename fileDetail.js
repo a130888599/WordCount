@@ -6,7 +6,7 @@ function removeEscapeChar(str) {
   arr.map((item) => {
     newArr.push(item.trim())  // 将\n去除
   })
-  return newArr.join('')
+  return newArr
 }
 
 // 获取文件内容
@@ -38,7 +38,7 @@ async function getFileDetail(event, filePath) {
 
 // 获取文件字符数
 function getFileCharsNum(data) {
-  const str = removeEscapeChar(data)  // 获得处理掉转义符后的字符串
+  const str = removeEscapeChar(data).join('')  // 获得处理掉转义符后的字符串
   console.log(`该文件的字符数为：${str.length}`);
 }
 
@@ -50,7 +50,22 @@ function getFileLinesNum(data) {
 
 // 获取文件词数
 function getFileWordsNum(data) {
-  
+  const arr = removeEscapeChar(data)  // 获取处理掉转义符后的数组，每个元素代表一行
+  let res = 0;
+  arr.map((item) => {
+    console.log(item);
+    let isSpace = true
+    for (let i = 0; i < item.length; i++) {
+      if (item[i] == ' ')
+        isSpace = true
+      else {
+        if (isSpace)
+          res++
+        isSpace = false
+      }
+    }
+  })
+  console.log(res);
 }
 
 module.exports = getFileDetail
