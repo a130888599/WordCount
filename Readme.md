@@ -1,3 +1,10 @@
+### 使用方法
+mywc parameter fileName
+
+例如
+mywc -c test.c
+
+
 ###  题目描述
 
 Word Count
