@@ -1,0 +1,27 @@
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.container {
+  width: 400px;
+  border: solid 1px #000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+.item {
+  list-style: none;
+  border: solid 1px #ccc;
+  margin: 5px;
+  padding: 5px;
+}
+.item:hover {
+  background-color: #ccc;
+}
