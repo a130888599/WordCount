@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const http = require('http')
 const url = require('url')
 const fs = require('fs')
@@ -17,9 +18,9 @@ const server = http.createServer((req, res) => {
   route(url_obj, req, res);
 })
 
-server.listen(8080, () => {
-  console.log('服务器已开启8080')
-  c.exec('start http://localhost:8080/');
+server.listen(8081, () => {
+  console.log('服务器已开启8081')
+  c.exec('start http://localhost:8081/');
 })
 
 function route(url_obj, req, res) {

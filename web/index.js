@@ -1,6 +1,6 @@
 // 发送ajax请求
 $.ajax({
-  url: 'http://localhost:8080/getAllFile',
+  url: 'http://localhost:8081/getAllFile',
   type: 'GET',
   dataType: 'json',
   success: (data) => {
