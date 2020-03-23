@@ -2,18 +2,9 @@
 
 const fileDetail = require('./fileDetail')
 const fs = require('fs')
-console.log(fileDetail);
-const parameters = {
-  char: '-c',
-  word: '-w',
-  line: '-l',
-  all: '-a',
-  space: '-s',
-  web: '-x',
-}
 
 const argvs = process.argv.slice(2) // 命令行中输入的参数
-const params = argvs.filter(item => item.includes('-')) || [] // 获取所有命令
+const params = argvs.filter(item => item.includes('-')) || [] // 获取命令
 const [fileName = 'file.c'] = argvs.filter(item => item.includes('.')) || '' // 获取文件名
 
 // 判断参数中是否有-s

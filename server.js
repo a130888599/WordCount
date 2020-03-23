@@ -2,8 +2,14 @@ const http = require('http')
 const url = require('url')
 const fs = require('fs')
 const c = require('child_process')
-const path = require('path')
-const { getAllFileDetail } = require('./fileDetail')
+
+const {
+  getFileCharsNum,
+  getFileLinesNum,
+  getFileWordsNum,
+  getFileAllNum,
+  setFileName
+} = require('./function')
 
 const server = http.createServer((req, res) => {
   let url_obj = url.parse(req.url, true);
@@ -16,7 +22,6 @@ server.listen(8080, () => {
   c.exec('start http://localhost:8080/');
 })
 
-
 function route(url_obj, req, res) {
   let pathname = url_obj.pathname;
   switch (pathname) {
@@ -25,7 +30,9 @@ function route(url_obj, req, res) {
       return 
     }
     case '/getAllFile': {
+      console.log('hhhhhh');
       getAllFileDetail(res)
+      return
     }
     default: {
       let data = fs.readFileSync(`./web${req.url}`);
@@ -43,4 +50,26 @@ function openHTML(filmName, res) {
     data = fs.readFileSync(`./web${filmName}`, 'utf-8'); //异步读取会导致undefined
   }
   res.end(data);
+}
+
+// web返回:全部数据
+function getAllFileDetail(res) {
+  const filesArr = fs.readdirSync('./test')
+  let resArr = []
+  filesArr.map(item => {
+    console.log('item :', item);
+    setFileName(item)
+    let data = fs.readFileSync(`./test/${item}`, 'utf-8')
+    let resValue = {
+      fileName: item,
+      value: {
+        charsNum: getFileCharsNum(data),
+        LinesNum: getFileLinesNum(data),
+        WordsNum: getFileWordsNum(data),
+        AllNum: getFileAllNum(data)
+      }
+    }
+    resArr.push(resValue)
+  })
+  res.end(JSON.stringify(resArr))
 }
