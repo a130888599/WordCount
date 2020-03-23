@@ -1,8 +1,16 @@
 ### 使用方法
-mywc parameter fileName
-
+```
+npm install
+mywc parameters fileNames
+```
 例如
 mywc -c test.c
+
+
+### 说明
+请将所有测试文件放在test文件夹
+为了防止文件过大，项目没有使用任何框架。
+由于不懂如何用原生nodejs实现GUI界面，因此改成了打开网页实现，为此写了一个最简单的http服务器，方便接受请求
 
 
 ###  题目描述
